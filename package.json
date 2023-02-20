@@ -8,7 +8,7 @@
   "scripts": {
     "x": "npm run build:deploy -- test_message",
     "build:deploy": "npm run build:back && npm run build:front && npm run git",
-    "build:front": "cd points && npm run build",
+    "build:front": "cd points && npm install && npm run build",
     "build:back": "nest build",
     "git-old": "git add . && git commit -m",
     "postgit-old": "git push",
