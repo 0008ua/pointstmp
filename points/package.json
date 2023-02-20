@@ -1,10 +1,11 @@
 {
   "name": "points",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm --no-git-tag-version version patch && ionic build --aot --prod",
+    "build-old": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
