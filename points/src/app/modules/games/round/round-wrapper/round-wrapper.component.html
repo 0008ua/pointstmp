@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-header [ngStyle]="{'border-bottom': '2px solid ' + getPlayerColor()}">
+    <ion-card-subtitle>
+      <span class="round-subtitle">
+        <ion-icon class="round-subtitle__icon" color="primary" [name]=getRoundById()?.icon></ion-icon>
+        <span *ngIf="(gameType$ | async) !== 'rummy'" class="ion-text-capitalize round-subtitle__text">
+          {{'games.' + (gameType$ | async) + '.' + getRoundById()?.name | translate}} {{getRoundById()?.namePostfix}}
+        </span>
+
+        <span class="round-subtitle__blank"></span>
+        <span>{{calcScores()}}</span>
+      </span>
+    </ion-card-subtitle>
+    <ion-card-title class="ion-text-center">{{getPlayerName()}}</ion-card-title>
+  </ion-card-header>
+  <ng-content></ng-content>
+</ion-card>

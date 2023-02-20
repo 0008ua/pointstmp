@@ -1,0 +1,66 @@
+<app-choose-players
+  *ngIf="(activeRoundId$ | async) === 'start' && (rounds$ | async).length === 0; else restRounds"
+>
+</app-choose-players>
+<ng-template #restRounds>
+  <!-- Ticket to ride -->
+  <app-round-wrapper
+    *ngIf="(gameType$ | async) === 'train'"
+    [ngSwitch]="activeRoundId$ | async"
+    [roundId]="activeRoundId$ | async"
+    [playerId]="activePlayerId$ | async"
+  >
+    <app-round-routes
+      *ngSwitchCase="'routes'"
+      [roundId]="activeRoundId$ | async"
+      [playerId]="activePlayerId$ | async"
+    ></app-round-routes>
+    <app-round-length
+      *ngSwitchCase="'length'"
+      [roundId]="activeRoundId$ | async"
+      [playerId]="activePlayerId$ | async"
+    ></app-round-length>
+    <app-round-stations
+      *ngSwitchCase="'stations'"
+      [roundId]="activeRoundId$ | async"
+      [playerId]="activePlayerId$ | async"
+    ></app-round-stations>
+    <app-round-cars
+      *ngSwitchCase="'cars'"
+      [roundId]="activeRoundId$ | async"
+      [playerId]="activePlayerId$ | async"
+    >
+    </app-round-cars>
+  </app-round-wrapper>
+  <!-- Uno -->
+  <app-round-wrapper
+    *ngIf="(gameType$ | async) === 'uno'"
+    [roundId]="activeRoundId$ | async"
+    [playerId]="activePlayerId$ | async"
+  >
+    <app-round-uno [roundId]="activeRoundId$ | async" [playerId]="activePlayerId$ | async">
+    </app-round-uno>
+  </app-round-wrapper>
+  <!-- Rummy -->
+  <app-round-wrapper
+    *ngIf="(gameType$ | async) === 'rummy'"
+    [roundId]="activeRoundId$ | async"
+    [playerId]="activePlayerId$ | async"
+  >
+    <app-round-rummy [roundId]="activeRoundId$ | async" [playerId]="activePlayerId$ | async">
+    </app-round-rummy>
+  </app-round-wrapper>
+  <!-- Thousand -->
+  <app-round-t-wrapper
+    *ngIf="(gameType$ | async) === 'thousand'"
+    [roundId]="activeRoundId$ | async"
+    [playerId]="activePlayerId$ | async"
+  >
+    <app-round-thousand
+      [roundId]="activeRoundId$ | async"
+      [playerId]="activePlayerId$ | async"
+    ></app-round-thousand>
+    <!-- <app-round-thousand *ngFor="let round of (rounds$ | async)" [roundId]="round._id" [round]="round"
+      [playerId]="(activePlayerId$ | async)"></app-round-thousand> -->
+  </app-round-t-wrapper>
+</ng-template>

@@ -1,0 +1,21 @@
+<ion-card-content>
+  <ion-row *ngFor="let car of carsScoresEnv" class="round round_tools">
+    <ion-col class="round_tools__score">
+      <ion-label>{{calcQtyOfArrItems(car.value)}}</ion-label>
+    </ion-col>
+    <ion-col class="round_tools__btn">
+      <div class="incDecBtn">
+        <ion-button shape="round" color="danger" fill="outline" (click)="removeFromScoresLine(car.value)">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <span class="incDecBtn__caption">
+          <ion-icon name="train-outline"></ion-icon>
+          {{car.name}}
+        </span>
+        <ion-button shape="round" color="success" fill="outline" (click)="addToScoresLine(car.value)">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-card-content>

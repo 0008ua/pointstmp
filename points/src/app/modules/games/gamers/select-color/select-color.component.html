@@ -1,0 +1,11 @@
+<ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="select-color">
+        <ion-col class="select-color__container" *ngFor="let color of colors" (click)="onSelect(color)">
+          <div class="select-color__item" [ngStyle]="{'background-color' : color }"></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

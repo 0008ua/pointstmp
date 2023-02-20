@@ -1,0 +1,7 @@
+{
+  "name": "points",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

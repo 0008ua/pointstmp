@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="analytics-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-segment *ngIf="stats?.length" [value]="stats[0]" (ionChange)="onMenuClickHandler($event)">
+      <ion-segment-button *ngFor="let stat of stats; let idx = index" [value]="stat">
+        <ion-icon [name]="stat.icon"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row>
+      <ion-col size-lg="6" size-md="8" size-sm="10" offset-lg="3" offset-md="2" offset-sm="1">
+        <app-stat-wrapper *ngIf="gameType === 'train'" [gameType]="gameType" [stat]="stat">
+          <app-train [gameType]="gameType" [analytics$]="analytics$" [stat]="stat"></app-train>
+        </app-stat-wrapper>
+        <app-stat-wrapper *ngIf="gameType === 'rummy'" [gameType]="gameType" [stat]="stat">
+          <app-rummy [gameType]="gameType" [analytics$]="analytics$" [stat]="stat"></app-rummy>
+        </app-stat-wrapper>
+        <app-stat-wrapper *ngIf="gameType === 'thousand'" [gameType]="gameType" [stat]="stat">
+          <app-thousand [gameType]="gameType" [analytics$]="analytics$" [stat]="stat"></app-thousand>
+        </app-stat-wrapper>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

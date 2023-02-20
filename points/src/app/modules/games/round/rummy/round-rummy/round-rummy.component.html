@@ -1,0 +1,30 @@
+<ion-card-content>
+  <ion-row class="round round_tools">
+    <ion-col *ngFor="let namedScore of namedScoresEnv" size="2.4">
+      <!-- <img class="uno-round-img" [src]="namedScore.picture" [alt]="namedScore.name"
+      (click)="addToNamedScoresLine(namedScore)"> -->
+
+      <ion-chip  (click)="addToNamedScoresLine(namedScore)">
+        <ion-label>{{namedScore.name}}</ion-label>
+      </ion-chip>
+    </ion-col>
+    <!-- <ion-col size="3">
+      <ion-chip [color]="'danger'" (click)="inverseScore()">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-chip>
+    </ion-col> -->
+  </ion-row>
+  <ion-row class="round round_result">
+    <ion-col *ngFor="let namedScore of getMemberByPlayerId()?.namedScoresLine" size="1">
+      <!-- <img [src]="namedScore.picture" [alt]="namedScore.name" (click)="removeFromNamedScoresLine(namedScore)"> -->
+
+      <ion-chip outline [color]="'secondary'" (click)="removeFromNamedScoresLine(namedScore)">
+        <ion-label>{{namedScore.name }}</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+
+      </ion-chip>
+
+    </ion-col>
+  </ion-row>
+</ion-card-content>

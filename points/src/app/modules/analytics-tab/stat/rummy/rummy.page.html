@@ -1,0 +1,19 @@
+<ion-item *ngFor="let player of (analytics$ | async); let idx = index">
+  <div
+    slot="start"
+    [ngStyle]="{
+                  'border-right': '6px solid ' + player.color,
+                  'padding-right': '10px'
+                }"
+  >
+    {{idx+1}}
+  </div>
+  <ion-label> {{player.name}} </ion-label>
+
+  <ion-text slot="end" color="primary">
+    <ion-text class="bold" [color]="player.rating.scores < 0 ? 'danger' : 'success'">
+      {{player.rating.scores}}</ion-text
+    >
+    / {{player.rating.totalGames}} / {{player.rating.wins}}
+  </ion-text>
+</ion-item>

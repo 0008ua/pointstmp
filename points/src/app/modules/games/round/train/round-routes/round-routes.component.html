@@ -1,0 +1,25 @@
+<ion-card-content>
+  <ion-row class="round round_tools">
+    <ion-col *ngFor="let routeScore of routesScoresEnv" size="3">
+      <ion-chip [color]="routeScore.value > 19 ? 'secondary' : 'warning'"
+        (click)="addToNamedScoresLine({value: routeScore.value * inverse, name: (numberFn(routeScore.name) * inverse) + '' })">
+        <ion-label>{{routeScore.value * inverse}}</ion-label>
+      </ion-chip>
+    </ion-col>
+    <ion-col size="3">
+      <ion-chip [color]="'danger'" (click)="inverseScore()">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+  <ion-row class="round round_result">
+    <ion-col *ngFor="let routeScore of getMemberByPlayerId().namedScoresLine" size="3">
+      <ion-chip outline [color]="routeScore.value > 19 ? 'secondary' : routeScore.value < 0 ? 'danger' : 'warning'"
+        (click)="removeFromNamedScoresLine({value: routeScore.value, name: routeScore.name})">
+        <ion-label>{{routeScore.value}}</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+</ion-card-content>

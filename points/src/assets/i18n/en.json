@@ -1,0 +1,101 @@
+{
+  "language": "Перейти на Українську",
+  "games": {
+    "train": {
+      "title": "Ticket to ride",
+      "routes": "Completed routes",
+      "length": "Longest route",
+      "cars": "Trains",
+      "stations": "Used stations",
+      "longestRoute": "Mark as longest route",
+      "stationsShort": "Stations"
+    },
+    "uno": {
+      "title": "Uno",
+      "round": "Round"
+    },
+    "thousand": {
+      "title": "Thousand - 1000"
+    },
+    "rummy": {
+      "title": "Rummy"
+    }
+  },
+  "modules": {
+    "settings": {
+      "title": "Settings"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "rating": "Raiting",
+      "byWins": "Raiting by total wins",
+      "byWinsToGames": "Raiting by wins to played games",
+      "gamesCount": "Games",
+      "winsToGames": "%",
+      "wins": "Wins"
+    },
+    "games": {
+      "title": "Games",
+      "createGamer": "Create player",
+      "addPlayers": "Add players",
+      "color": "Color",
+      "player": "Player",
+      "round": "Round",
+      "results": "Results"
+    },
+    "user": {
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "orSignup": "Or sign up",
+      "orSignin": "Or sign in",
+      "logout": "Logout",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password"
+    },
+    "profile": {
+      "telegramSetup": "Telegram setup",
+      "telegramSetupTitle": "Telegram codes",
+      "telegramSetupDescription": "Search in Telegram for 'pointsResultBot' and subscribe using this codes"
+    }
+  },
+  "elements": {
+    "button": {
+      "send": "Send",
+      "add": "Add",
+      "create": "Create",
+      "remove": "Remove",
+      "removeAll": "Remove all",
+      "startGame": "Start game",
+      "update": "Update",
+      "slideToDelete": "Slide to delete",
+      "slideForOptions": "Slide for options",
+      "submit": "Submit",
+      "activate": "Activate",
+      "close": "Close",
+      "delete": "Delete",
+      "finishGame": "Finish game",
+      "cancelGame": "Cancel game",
+      "nextRound": "Next Round",
+      "subscribe": "Subscribe",
+      "unsubscribe": "Unubscribe"
+    }
+  },
+  "common": {
+    "logic": {
+      "true": "Yes",
+      "false": "No"
+    }
+  },
+  "errors": {
+    "minlength": "Too short",
+    "maxlength": "Too longg",
+    "required": "Required",
+    "pattern": "Some characters are not allowed or format is not correct",
+    "notunique": "Already exists",
+    "mismatch": "Mismatch",
+    "max": "Too much",
+    "min": "Not enough "
+  }
+}

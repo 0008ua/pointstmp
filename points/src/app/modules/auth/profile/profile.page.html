@@ -1,0 +1,63 @@
+<ion-menu menuId="profile-menu" side="end" contentId="profile-content">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>
+        <h2 *ngIf="(userRole$ | async) === 'member'">{{(user$ | async).name }}</h2>
+        <h2 *ngIf="(userRole$ | async) === 'guest'">Guest</h2>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list lines="none">
+      <ion-menu-toggle auto-hide="false" menu="profile-menu">
+        <ion-item
+          routerLink="/auth/profile/telegram"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          <ion-label>{{'modules.profile.telegramSetup' | translate}}</ion-label>
+        </ion-item>
+        <ion-item-divider></ion-item-divider>
+
+        <ion-item button (click)="switchLanguage()">
+          <ion-icon name="earth-outline" slot="start"></ion-icon>
+          <ion-label>{{'language' | translate}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="(userRole$ | async) === 'member'" button (click)="onLogout()">
+          <ion-icon name="exit" slot="start"></ion-icon>
+          <ion-label>{{'modules.user.logout' | translate}}</ion-label>
+        </ion-item>
+        <ion-item
+          *ngIf="(userRole$ | async) === 'guest'"
+          routerLink="/auth/signin"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="log-in" slot="start"></ion-icon>
+          <ion-label>{{'modules.user.signin' | translate}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="profile-content"></ion-router-outlet>
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+        <ion-buttons slot="end">
+          <ion-item (click)="onLogout()" button lines="none">
+            <ion-icon name="earth-outline" slot="start"></ion-icon>
+            <ion-label>{{'logout' | translate}}</ion-label>
+          </ion-item>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+</ion-content> -->

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="games-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-segment
+      *ngIf="showToolbarMenu"
+      scrollable
+      [value]="(activeRoundId$ | async)"
+      (ionChange)="onMenuClickHandler($event)"
+    >
+      <ion-segment-button
+        *ngFor="let round of roundsCfg; let idx = index"
+        [value]="round._id"
+        [disabled]="(round._id === 'start' && (rounds$ | async).length) ||
+                    (round._id !== 'start' && (rounds$ | async).length === 0)"
+      >
+        <ion-icon [name]="round.icon"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row>
+      <ion-col size-lg="6" size-md="8" size-sm="10" offset-lg="3" offset-md="2" offset-sm="1">
+        <ion-card *ngIf="(rounds$ | async).length !== 0">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center"
+              >{{'games.' + gameType + '.title' | translate}}</ion-card-title
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item
+                *ngFor="let player of playersWithTotal"
+                (click)="selectPlayer(player._id)"
+                [ngClass]="{'active-player': player._id === (activePlayerId$ | async) && gameType !== 'thousand'}"
+              >
+                <ion-label
+                  [ngStyle]="{
+                  'border-left': '6px solid ' + player.color,
+                  'padding-left': '10px'
+                }"
+                >
+                  {{player.name}}
+                </ion-label>
+                <div
+                  slot="end"
+                  [ngStyle]="{
+                  'border-right': '6px solid ' + player.color,
+                  'padding-right': '10px'
+                }"
+                >
+                  {{getPlayerTotalScores(player._id)}}
+                </div>
+              </ion-item>
+            </ion-list>
+            <ion-row class="ion-justify-content-around">
+              <ion-button
+                *ngIf="gameType !== 'thousand'"
+                fill="outline"
+                size="small"
+                (click)="onFinishGameHandler()"
+                [disabled]="(rounds$ | async).length === 0 || (loading$ | async) ||
+              (gameType === 'rummy' && finishGameDisabled(playersWithTotal))"
+              >
+                {{'elements.button.finishGame' | translate}}
+              </ion-button>
+              <ion-button
+                fill="outline"
+                size="small"
+                [disabled]="(rounds$ | async).length === 0 || (loading$ | async)"
+                (click)="onCancelGameHandler()"
+              >
+                {{'elements.button.cancelGame' | translate}}
+              </ion-button>
+              <ion-button
+                *ngIf="gameType === 'uno'"
+                fill="outline"
+                size="small"
+                (click)="openNextRound()"
+              >
+                {{'elements.button.nextRound' | translate}}
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row
+      *ngIf="(activeRoundId$ | async) === 'start' || ((activeRoundId$ | async) && (activePlayerId$ | async))"
+    >
+      <ion-col size-lg="8" size-md="10" size-sm="12" offset-lg="2" offset-md="1" offset-sm="0">
+        <app-round
+          [activeRoundId$]="activeRoundId$"
+          [activePlayerId$]="activePlayerId$"
+          [gameType$]="gameType$"
+          [players$]="players$"
+        ></app-round>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

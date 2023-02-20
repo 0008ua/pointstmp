@@ -1,0 +1,90 @@
+<ion-card-content>
+  <ng-container class="round round_result">
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="storeRoundScores()" expand="block"> {{'elements.button.submit' | translate}} </ion-button>
+      </ion-col>
+      <ion-col
+        *ngFor="let roundMember of roundMembers$ | async; let i = index"
+        [size]="12 / qtyOfPlayers"
+      >
+        <div
+          [ngClass]="
+            roundMember._id === activeRoundMemberId
+              ? { 'active-item': true }
+              : { 'regular-item': true }
+          "
+        ></div>
+        <div class="round-btn-block">
+          <ion-button
+            class="round-btn-block__item"
+            size="small"
+            (click)="changeScoresState(roundMember._id, 'r')"
+            color="secondary"
+            [fill]="scores[roundMember._id]?.name !== 'r' ? 'solid' : 'outline'"
+            [disabled]="
+              scores[roundMember._id]?.disabled.includes('r') ||
+              scores[roundMember._id].barrel > 0 ||
+              (roundMember._id === activeRoundMemberId && qtyOfPlayers === 4)
+            "
+            >R</ion-button
+          >
+          <ion-button
+            class="round-btn-block__item"
+            size="small"
+            (click)="changeScoresState(roundMember._id, 's')"
+            color="secondary"
+            [fill]="scores[roundMember._id]?.name !== 's' ? 'solid' : 'outline'"
+            [disabled]="
+              scores[roundMember._id]?.disabled.includes('s') ||
+              scores[roundMember._id].barrel > 0 ||
+              (roundMember._id === activeRoundMemberId && qtyOfPlayers === 4)
+            "
+            >S</ion-button
+          >
+        </div>
+        <ion-item class="thousand-score-input">
+          <ion-input
+            type="number"
+            placeholder="0"
+            [(ngModel)]="scores[roundMember._id].value"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col
+        *ngFor="let roundMember of addTotals(roundMembers$ | async)"
+        [size]="12 / qtyOfPlayers"
+      >
+        <ion-item
+          class="thousand-score__wrapper"
+          [lines]="
+            (roundMember.namedScoresLine.length - i - 1) % qtyOfPlayers === 0 ? 'full' : 'none'
+          "
+          *ngFor="let score of roundMember.namedScoresLine.slice().reverse(); let i = index"
+        >
+          <ion-text
+            class="thousand-score__current"
+            [color]="i <= 1 && scores[roundMember._id].doubleZero ? 'danger' : ''"
+            >{{ score.name === 'r' || score.name === 's' ? score.name.toUpperCase() : score.value }}</ion-text
+          >
+          <div style="width: 100%"></div>
+          <ion-text
+            class="thousand-score__total"
+            [ngClass]="{ 'thousand-score__total_last': i === 0 }"
+            [color]="
+              score.total >= 900 &&
+              score.total < 1000 &&
+              scores[roundMember._id].barrel &&
+              i < qtyOfPlayers
+                ? 'danger'
+                : ''
+            "
+            >{{ score.total }}</ion-text
+          >
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-card-content>

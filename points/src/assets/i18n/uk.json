@@ -1,0 +1,101 @@
+{
+  "language": "Switch to English",
+  "games": {
+    "train": {
+      "title": "Ticket to ride",
+      "routes": "Завершені маршрути",
+      "length": "Найдовший маршрут",
+      "cars": "Потяги",
+      "stations": "Використані станції",
+      "longestRoute": "Позначити як найдовший",
+      "stationsShort": "Станції"
+    },
+    "uno": {
+      "title": "Уно",
+      "round": "Раунд"
+    },
+    "thousand": {
+      "title": "Тисяча - 1000"
+    },
+    "rummy": {
+      "title": "Румі"
+    }
+  },
+  "modules": {
+    "settings": {
+      "title": "Налаштування"
+    },
+    "analytics": {
+      "title": "Аналітика",
+      "rating": "Рейтинг",
+      "byWins": "Рейтинг за загальною кількістю перемог",
+      "byWinsToGames": "Рейтинг за кількістю перемог до зіграних партій",
+      "winsToGames": "%",
+      "gamesCount": "Партій",
+      "wins": "Перемог"
+    },
+    "games": {
+      "title": "Ігри",
+      "createGamer": "Створити гравця",
+      "addPlayers": "Додати гравців",
+      "color": "Колір",
+      "player": "Гравець",
+      "round": "Раунд",
+      "results": "Результати"
+    },
+    "user": {
+      "signin": "Вхід",
+      "signup": "Реєстрація",
+      "orSignup": "Або реєстрація",
+      "orSignin": "Або вхід",
+      "logout": "Вийти",
+      "name": "Ім'я",
+      "email": "Email",
+      "password": "Пароль",
+      "confirmPassword": "Підтвердити пароль"
+    },
+    "profile": {
+      "telegramSetup": "Налаштування Telegram",
+      "telegramSetupTitle": "Коди для Telegram",
+      "telegramSetupDescription": "Знайти в Телеграмі 'pointsResultBot' і підписатися за допомогою цих кодів"
+    }
+  },
+  "elements": {
+    "button": {
+      "send": "Надіслати",
+      "add": "Додати",
+      "create": "Створити",
+      "remove": "Видалити",
+      "removeAll": "Видалити всіх",
+      "startGame": "Розпочати гру",
+      "update": "Оновити",
+      "slideToDelete": "Зсунути для видалення",
+      "slideForOptions": "Зсунути для опцій",
+      "submit": "Зберегти",
+      "activate": "Активувати",
+      "close": "Закрити",
+      "delete": "Видалити",
+      "finishGame": "Завершити гру",
+      "cancelGame": "Відмінити гру",
+      "nextRound": "Наступний раунд",
+      "subscribe": "Підписатися",
+      "unsubscribe": "Відписатися"
+    }
+  },
+  "common": {
+    "logic": {
+      "true": "Так",
+      "false": "Ні"
+    }
+  },
+  "errors": {
+    "minlength": "Надто короткий",
+    "maxlength": "Надто довгий",
+    "required": "Обов'язкове поле",
+    "pattern": "Присутні недопустимі символи або невірне форматування",
+    "notunique": "Вже існує",
+    "mismatch": "Не збігається",
+    "max": "Забагато",
+    "min": "Замало"
+  }
+}

@@ -1,0 +1,22 @@
+<ion-card-content>
+  <ion-row class="round round_tools">
+    <ion-col class="round_tools__score">
+      <ion-label>{{ 3 - calcScores() / 4 }}</ion-label>
+    </ion-col>
+    <ion-col class="round_tools__btn">
+      <div class="incDecBtn">
+        <ion-button shape="round" color="danger" fill="outline" (click)="addToScoresLine(4)"
+          [disabled]="getMemberByPlayerId().scoresLine.length >= 3">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <span class="incDecBtn__caption">
+          <div>{{'games.train.stationsShort' | translate}}</div>
+        </span>
+        <ion-button shape="round" color="success" fill="outline" (click)="removeFromScoresLine(4)"
+          [disabled]="getMemberByPlayerId().scoresLine.length <= 0">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-card-content>

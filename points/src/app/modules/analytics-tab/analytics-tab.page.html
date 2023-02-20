@@ -1,0 +1,62 @@
+<ion-menu menuId="analytics-menu" side="end" contentId="analytics-content">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>
+        <h2 *ngIf="(userRole$ | async) === 'member'">{{(user$ | async).name }}</h2>
+        <h2 *ngIf="(userRole$ | async) === 'guest'">Guest</h2>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list lines="none">
+      <ion-menu-toggle auto-hide="false" menu="analytics-menu">
+        <ion-item
+          routerLink="/analytics/train"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="train-outline" slot="start"></ion-icon>
+          <ion-label>{{'games.train.title' | translate}}</ion-label>
+        </ion-item>
+
+        <ion-item
+          routerLink="/analytics/rummy"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="journal-outline" slot="start"></ion-icon>
+          <ion-label>{{'games.rummy.title' | translate}}</ion-label>
+
+        </ion-item>
+                <ion-item
+          routerLink="/analytics/thousand"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="journal-outline" slot="start"></ion-icon>
+          <ion-label>{{'games.thousand.title' | translate}}</ion-label>
+        </ion-item>
+
+        <ion-item-divider></ion-item-divider>
+        <ion-item button (click)="switchLanguage()">
+          <ion-icon name="earth-outline" slot="start"></ion-icon>
+          <ion-label>{{'language' | translate}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="(userRole$ | async) === 'member'" button (click)="onLogout()">
+          <ion-icon name="exit" slot="start"></ion-icon>
+          <ion-label>{{'modules.user.logout' | translate}}</ion-label>
+        </ion-item>
+        <ion-item
+          *ngIf="(userRole$ | async) === 'guest'"
+          routerLink="/auth/signin"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          <ion-icon name="log-in" slot="start"></ion-icon>
+          <ion-label>{{'modules.user.signin' | translate}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="analytics-content"></ion-router-outlet>

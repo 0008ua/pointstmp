@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'modules.profile.telegramSetup' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="profile-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row>
+      <ion-col
+        size-lg="6"
+        size-md="8"
+        size-sm="10"
+        offset-lg="3"
+        offset-md="2"
+        offset-sm="1"
+      >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{
+              'modules.profile.telegramSetupTitle' | translate
+            }}</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">{{
+              'modules.profile.telegramSetupDescription' | translate
+            }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="choose-players">
+            <ion-list class="choose-players__list">
+              <ion-item
+                *ngFor="let gamer of gamers$ | async; let index = index"
+                lines="none"
+              >
+                <!-- <ion-item lines="none"> -->
+                <div class="players-list">
+                  <div class="players-list__color">
+                    <div
+                      class="select-color"
+                      [ngStyle]="{ 'background-color': gamer?.color }"
+                    ></div>
+                  </div>
+                  <div class="players-list__info">
+                    <ion-item lines="full">
+                      <ion-label class="players-list-info">
+                        <ion-text
+                          class="players-list-info__item players-list-info__item_name"
+                          color="primary"
+                          >{{ gamer.name }}</ion-text
+                        >
+                        <ion-button
+                        size="small"
+                          *ngIf="gamer.telegramSubscriptionName"
+                          class="players-list-info__item players-list-info__item_btn"
+                          (click)="unsubscibeFromBot(gamer._id)"
+                          >{{'elements.button.unsubscribe' | translate}}
+                          {{ gamer.telegramSubscriptionName }}</ion-button
+                        >
+                        <ion-text
+                          class="players-list-info__item players-list-info__item_code"
+                          color="primary"
+                          >{{ gamer.telegramCheckCode }}</ion-text
+                        >
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </div>
+              </ion-item>
+
+              <!-- </ion-item> -->
+            </ion-list>
+
+            <!-- <ion-row class="choose-players__btn-block">
+              <ion-col>
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  size="small"
+                  color="secondary"
+                  (click)="addPlayerHandler()"
+                  [disabled]="
+                    players.length >= environment.games[gameType]?.maxPlayersQty
+                  "
+                >
+                  {{ 'elements.button.add' | translate }}
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  size="small"
+                  color="success"
+                  (click)="showCreateGamerPopup($event)"
+                >
+                  {{ 'elements.button.create' | translate }}
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  size="small"
+                  color="danger"
+                  (click)="removeAllPlayersHandler()"
+                >
+                  {{ 'elements.button.removeAll' | translate }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row class="choose-players__btn-block">
+              <ion-col>
+                <ion-button
+                  expand="block"
+                  (click)="startGameHandler()"
+                  [disabled]="
+                    players.length < 2 ||
+                    players.length > environment.games[gameType]?.maxPlayersQty
+                  "
+                >
+                  {{ 'elements.button.startGame' | translate }}
+                </ion-button>
+              </ion-col>
+            </ion-row> -->
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

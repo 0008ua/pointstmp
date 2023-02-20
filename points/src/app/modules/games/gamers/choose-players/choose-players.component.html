@@ -1,0 +1,109 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">{{
+      'modules.games.addPlayers' | translate
+    }}</ion-card-title>
+    <ion-card-subtitle class="ion-text-center">{{'games.' + gameType + '.title' | translate}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content class="choose-players">
+    <ion-list class="choose-players__list">
+      <ion-item-sliding *ngFor="let player of players$ | async; let index = index" lines="none">
+        <ion-item lines="none">
+          <div class="players-list">
+            <div class="players-list__color">
+              <div
+                class="select-color"
+                (click)="filtredColors.length > 1 ? showSelectColorPopup($event, index) : null"
+                [ngStyle]="{ 'background-color': player?.color }"
+              ></div>
+            </div>
+            <div class="players-list__info">
+              <ion-item>
+                <ion-select
+                  placeholder="Select One"
+                  [value]="player"
+                  interface="popover"
+                  (ionChange)="choosePlayerHandler($event, index)"
+                  slot="end"
+                >
+                  <ion-select-option [value]="player">
+                    {{ player.name }}
+                  </ion-select-option>
+                  <ion-select-option
+                    *ngFor="let filtredGamer of filtredGamers"
+                    [value]="filtredGamer"
+                  >
+                    {{ filtredGamer.name }}
+                  </ion-select-option>
+                </ion-select>
+                <ion-note slot="end" color="danger">
+                  <ion-icon name="trash-outline"></ion-icon>
+                  <ion-icon name="caret-back-outline"></ion-icon>
+                </ion-note>
+              </ion-item>
+            </div>
+          </div>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="removePlayerHandler(player._id)">{{
+            'elements.button.remove' | translate
+          }}</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-row class="choose-players__btn-block">
+      <ion-col>
+        <ion-button
+          expand="block"
+          fill="outline"
+          size="small"
+          color="secondary"
+          (click)="addPlayerHandler()"
+          [disabled]="players.length >= environment.games[gameType]?.maxPlayersQty"
+        >
+          {{ 'elements.button.add' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button
+          expand="block"
+          fill="outline"
+          size="small"
+          color="success"
+          (click)="showCreateGamerPopup($event)"
+        >
+          {{ 'elements.button.create' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button
+          expand="block"
+          fill="outline"
+          size="small"
+          color="danger"
+          (click)="removeAllPlayersHandler()"
+        >
+          {{ 'elements.button.removeAll' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="choose-players__btn-block">
+      <ion-col>
+        <ion-button
+          expand="block"
+          (click)="startGameHandler()"
+          [disabled]="
+            players.length < 2 || players.length > environment.games[gameType]?.maxPlayersQty
+          "
+        >
+          {{ 'elements.button.startGame' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+<!-- </ion-col>
+  </ion-row>
+</ion-grid> -->

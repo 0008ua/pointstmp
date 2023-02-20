@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Scores</ion-title>
+    <ion-buttons slot="end">
+      <ion-item (click)="switchLanguage()" button lines="none">
+        <ion-icon name="earth-outline" slot="start"></ion-icon>
+        <ion-label>{{'language' | translate}}</ion-label>
+      </ion-item>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="signinForm" #signinFormDirective="ngForm">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size-lg="6" size-md="8" size-sm="10" offset-lg="3" offset-md="2" offset-sm="1">
+
+          <ion-card>
+            <ion-card-header>
+              <!-- <div>
+                <img class="logo_signin" src="/assets/banner.svg">
+              </div> -->
+              <ion-card-title class="ion-text-center">{{'modules.user.signin' | translate}}</ion-card-title>
+              <ion-card-subtitle class="ion-text-center">
+                <a button color="primary" routerLink="/auth/signup">{{'modules.user.orSignup' | translate}}</a>
+              </ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-icon class="ion-align-self-center" name="person-outline" slot="start"></ion-icon>
+                  <ion-label position="floating">{{'modules.user.name' | translate}}</ion-label>
+                  <ion-input type="text" autocomplete autocorrect formControlName="name"></ion-input>
+                </ion-item>
+                <ng-container *ngIf="signinForm.get('name').dirty && signinForm.get('name').errors">
+                  <ion-text *ngFor="let error of signinForm.get('name').errors | errorExtractor" class="input-error"
+                    color="danger">
+                    {{'errors.' + error | translate}}
+                  </ion-text>
+                </ng-container>
+                <ion-item lines="none">
+                  <ion-icon class="ion-align-self-center" name="lock-closed-outline" slot="start"></ion-icon>
+                  <ion-label position="floating">{{'modules.user.password' | translate}}</ion-label>
+                  <ion-input [type]="inputType" autocomplete autocorrect formControlName="password"></ion-input>
+                  <ion-icon class="ion-align-self-center"
+                    [name]="inputType === 'password' ? 'eye-outline' : 'eye-off-outline'" slot="end"
+                    (click)=switchInputType()></ion-icon>
+                </ion-item>
+                <ng-container *ngIf="signinForm.get('password').dirty && signinForm.get('password').errors">
+                  <ion-text *ngFor="let error of signinForm.get('password').errors | errorExtractor" class="input-error"
+                    color="danger">
+                    {{'errors.' + error | translate}}
+                  </ion-text>
+                </ng-container>
+              </ion-list>
+            </ion-card-content>
+
+          </ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" [disabled]="signinForm.status === 'INVALID'" (click)="onSignin()">
+                {{'modules.user.signin' | translate}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

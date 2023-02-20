@@ -1,0 +1,21 @@
+<ion-item *ngFor="let player of (analytics$ | async); let idx = index">
+  <div
+    slot="start"
+    [ngStyle]="{
+                  'border-right': '6px solid ' + player.color,
+                  'padding-right': '10px'
+                }"
+  >
+    {{idx+1}}
+  </div>
+  <ion-label> {{player.name}} </ion-label>
+  <ion-text *ngIf="stat?._id === 'getRatingByWins'" slot="end" color="primary">
+    {{player.rating.wins}}
+  </ion-text>
+  <ion-text *ngIf="stat?._id === 'getRatingByWinsToGames'" slot="end" color="primary">
+    {{player.rating.wins}} / {{player.rating.gamesCount}}
+    <ion-text class="bold"
+      >( {{player.rating.wins ? math.floor(player.rating.winsToGames * 100) : 0}}% )
+    </ion-text>
+  </ion-text>
+</ion-item>

@@ -1,0 +1,20 @@
+<ion-tabs>
+  <div class="progress-wrapper">
+    <ion-progress-bar *ngIf="loading$ | async" type="indeterminate"></ion-progress-bar>
+
+  </div>
+  <ion-tab-bar slot="start">
+    <ion-tab-button tab="games">
+      <ion-icon name="game-controller"></ion-icon>
+      <ion-label>{{'modules.games.title' | translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="analytics">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <ion-label>{{'modules.analytics.title' | translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="auth">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>{{'modules.settings.title' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

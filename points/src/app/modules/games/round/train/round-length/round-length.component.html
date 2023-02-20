@@ -1,0 +1,10 @@
+<ion-card-content>
+  <ion-row>
+    <ion-col class="round round_tools">
+      <div>{{'games.train.longestRoute' | translate}}</div>
+      <ion-toggle [checked]="getMemberByPlayerId()?.scoresLine.length"
+        (ionChange)="onMarkLongestHandler($event)">
+      </ion-toggle>
+    </ion-col>
+  </ion-row>
+</ion-card-content>
